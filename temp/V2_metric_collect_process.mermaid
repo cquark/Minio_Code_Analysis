@@ -1,0 +1,17 @@
+graph TD
+    A[metricsHandler] --> B[Create Registry]
+    B --> C[Register Version Info]
+    C --> D[Register MinIO Collector]
+    D --> E[Setup Gatherers]
+    E --> F[HTTP Handler]
+    
+    subgraph "Metric Collection"
+        F --> G[Collect Metrics]
+        G --> H[Format Metrics]
+        H --> I[Send Response]
+    end
+    
+    subgraph "Error Handling"
+        C --> J[Log Critical Errors]
+        D --> J
+    end
