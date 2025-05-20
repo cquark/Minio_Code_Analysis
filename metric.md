@@ -10,6 +10,50 @@
 
 ## V2 
 ### Architecture
+```mermaid
+---
+config:
+  layout: dagre
+---
+flowchart TB
+ subgraph subGraph0["Metric V2 Architecture"]
+        V2Router["V2 Router"]
+        V2["V2 Entry Point: /prometheus/metrics"]
+        V2Cluster["/v2/metrics/cluster"]
+        V2Bucket["/v2/metrics/bucket"]
+        V2Node["/v2/metrics/node"]
+        V2Resource["/v2/metrics/resource"]
+        V2MetricsGroup["MetricsGroupV2"]
+        V2Cache["Simple Cache"]
+        V2Metric["MetricV2"]
+  end
+ subgraph subGraph1["Metric V3 Architecture"]
+        V3Router["V3 Router"]
+        V3["V3 Entry Point: /metrics/v3"]
+        V3Path["/metrics/v3/*"]
+        V3MetricsGroup["MetricsGroup"]
+        V3BucketMetricsGroup["BucketMetricsGroup"]
+        V3Cache["Advanced Cache"]
+        V3DataUsage["DataUsage Cache"]
+        V3Health["Health Cache"]
+        V3Drive["Drive Cache"]
+        V3Memory["Memory Cache"]
+        V3Metric["Metric"]
+  end
+    V2 --> V2Router
+    V2Router --> V2Cluster & V2Bucket & V2Node & V2Resource
+    V2Cluster --> V2MetricsGroup
+    V2Bucket --> V2MetricsGroup
+    V2Node --> V2MetricsGroup
+    V2Resource --> V2MetricsGroup
+    V2MetricsGroup --> V2Cache & V2Metric
+    V3 --> V3Router
+    V3Router --> V3Path
+    V3Path --> V3MetricsGroup & V3BucketMetricsGroup
+    V3MetricsGroup --> V3Cache & V3Metric
+    V3BucketMetricsGroup --> V3Cache & V3Metric
+    V3Cache --> V3DataUsage & V3Health & V3Drive & V3Memory
+```
 <img src=metric_diagram_architecture_v2.png>
 
 ## V3 
