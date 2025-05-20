@@ -1,0 +1,35 @@
+classDiagram
+    class MetricV2 {
+        +MetricDescription Description
+        +map[string]string StaticLabels
+        +float64 Value
+        +map[string]string VariableLabels
+        +string HistogramBucketLabel
+        +map[string]uint64 Histogram
+    }
+    
+    class MetricV3 {
+        +MetricDescription Description
+        +float64 Value
+        +map[string]string Labels
+    }
+    
+    class MetricsGroupV2 {
+        +*cachevalue.Cache[[]MetricV2] metricsCache
+        +time.Duration cacheInterval
+        +MetricsGroupOpts metricsGroupOpts
+        +Get() []MetricV2
+    }
+    
+    class MetricsGroupV3 {
+        +collectorPath CollectorPath
+        +[]MetricDescriptor Descriptors
+        +map[string]string ExtraLabels
+        +MetricsLoaderFn loader
+        +BucketMetricsLoaderFn bucketLoader
+        +*metricsCache cache
+        +validate()
+    }
+    
+    MetricsGroupV2 --> MetricV2
+    MetricsGroupV3 --> MetricV3

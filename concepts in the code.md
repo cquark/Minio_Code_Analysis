@@ -1,0 +1,3 @@
+- mux: match incoming requests to handlers
+- cors: Cross Origin Resource Sharing
+    - 한 출처의 웹 애플리케이션이 다른 출처의 리소스에 접근할 수 있도록 HTTP 헤더를 사용하여 제어하는 메커니즘

@@ -1,0 +1,14 @@
+flowchart TD
+    http_req["HTTP 요청<br>/minio/v2/metrics/*"] --> handler["handlerMetricsV2"]
+    handler --> route_check{"요청 경로에 따른 분기"}
+    route_check --> cluster["serveMetricsCluster"] & bucket["serveMetricsBucket"] & node["serveMetricsNode"] & resource["serveMetricsResource"]
+    cluster --> cluster_collect["metricsCluster.Collect()"]
+    bucket --> bucket_collect["metricsBucket.Collect()"]
+    node --> node_collect["metricsNode.Collect()"]
+    resource --> resource_collect["metricsResource.Collect()"]
+    cluster_collect --> prometheus_resp["Prometheus 형식 응답"]
+    bucket_collect --> prometheus_resp
+    node_collect --> prometheus_resp
+    resource_collect --> prometheus_resp
+
+    click route_check "https://github.com/minio/minio/blob/RELEASE.2025-02-03T21-03-04Z/cmd/metrics-router.go#L63"
