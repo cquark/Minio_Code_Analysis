@@ -1,0 +1,7 @@
+graph TD
+    A[HTTP Request] --> B[AuthMiddleware]
+    B --> C[Token Extraction]
+    C --> D[Token Validation]
+    D --> E[Claims Verification]
+    E --> F[IAM Policy Check]
+    F --> G[Access Granted/Denied]
