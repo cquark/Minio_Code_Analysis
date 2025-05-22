@@ -21,7 +21,7 @@ graph TD
 	class DE transparentNode;
 	class EF transparentNode;
 	class FA transparentNode;
-	A ---AB:::transparentNode --> B
+	A ---AB --> B
 	B ---BC--> C
 	C ---CD--> D
 	D ---DE--> E
