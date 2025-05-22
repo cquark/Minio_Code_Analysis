@@ -9,7 +9,7 @@ sequenceDiagram
     participant Prometheus
 
     Client->>Router: HTTP Request (/v2/metrics/*)
-    Note over Router: (cmd/metrics-router.go:63-67)[https://google.com]
+    Note over Router: [cmd/metrics-router.go:63-67](https://google.com)
     
     Router->>Handler: metricsXXXHandler(c prometheus.Collector)
     Note over Handler: cmd/metrics-v2.go:532-573
