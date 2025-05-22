@@ -2,7 +2,7 @@
 
 ```mermaid
 graph TD
-	classDef transparentNode stroke-width:0px;
+	classDef transparentNode fill:#fff, stroke-width:0px;
 	A[client]
 	B[metricsRouter]
 	C[metricsXXXHandler]
