@@ -1,5 +1,3 @@
-### Sequence Diagram Test
-```mermaid
 sequenceDiagram
     participant Client
     participant Router as metricsRouter
@@ -9,7 +7,7 @@ sequenceDiagram
     participant Prometheus
 
     Client->>Router: HTTP Request (/v2/metrics/*)
-    Note over Router: [cmd/metrics-router.go:63-67](https://google.com)
+    Note over Router: cmd/metrics-router.go:63-67
     
     Router->>Handler: metricsXXXHandler(c prometheus.Collector)
     Note over Handler: cmd/metrics-v2.go:532-573
@@ -24,5 +22,3 @@ sequenceDiagram
     Note over Prometheus: cmd/metrics-v2.go:412-477
     
     Prometheus-->>Client: HTTP Response
-    Note right of Prometheus: [test](https://google.com)
-```
