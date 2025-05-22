@@ -9,18 +9,13 @@ graph TD
 	D[metricsXXXCollector]
 	E[metricsGroupV2]
 	F[Prometheus]
-	AB["HTTP Request(/v2/metrics/*)"]
-	BC["metricsXXXHandler(c Prometheus.Collector)"]
-	CD["Collect(ch chan<-Prometheus.Metric)"]
-	DE["populateAndPublish()"]
-	EF["ReportMetrics()"]
-	FA[HTTPResponse]
-	class AB transparentNode;
-	class BC transparentNode;
-	class CD transparentNode;
-	class DE transparentNode;
-	class EF transparentNode;
-	class FA transparentNode;
+	AB["HTTP Request(/v2/metrics/*)"]:::transparentNode
+	BC["metricsXXXHandler(c Prometheus.Collector)"]:::transparentNode
+	CD["Collect(ch chan<-Prometheus.Metric)"]:::transparentNode
+	DE["populateAndPublish()"]:::transparentNode
+	EF["ReportMetrics()"]:::transparentNode
+	FA[HTTPResponse]:::transparentNode
+
 	A ---AB --> B
 	B ---BC--> C
 	C ---CD--> D
