@@ -1,0 +1,26 @@
+graph TD
+    A[System Metrics] --> B[MetricsGroupV2]
+    Note over A,B: cmd/metrics-v2.go:460-493
+    
+    B --> C[MetricV2]
+    Note over B,C: cmd/metrics-v2.go:719-770
+    
+    C --> D[Prometheus Metric]
+    Note over C,D: cmd/metrics-v2.go:412-477
+    
+    D --> E[HTTP Response]
+    Note over D,E: cmd/metrics-v2.go:532-573
+    
+    subgraph "Metric Collection"
+        A --> F[Resource Metrics]
+        A --> G[Node Metrics]
+        A --> H[Cluster Metrics]
+        A --> I[Bucket Metrics]
+    end
+    
+    subgraph "Metric Processing"
+        F --> J[collectMetric]
+        G --> J
+        H --> J
+        I --> J
+    end
