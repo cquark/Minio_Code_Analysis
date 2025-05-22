@@ -16,4 +16,5 @@ graph TD
 	D -->|"populateAndPublish()"| E
 	E -->|"ReportMetrics()"| F
 	F -->|HTTPResponse| A
+	click AB "https://google.com"
 ```
