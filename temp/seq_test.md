@@ -1,3 +1,5 @@
+### Sequence Diagram Test
+```mermaid
 sequenceDiagram
     participant Client
     participant Router as metricsRouter
@@ -22,3 +24,4 @@ sequenceDiagram
     Note over Prometheus: cmd/metrics-v2.go:412-477
     
     Prometheus-->>Client: HTTP Response
+```
