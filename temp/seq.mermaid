@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant Client
+    participant Router as metricsRouter
+    participant Handler as metricsXXXHandler
+    participant Collector as minioXXXCollector
+    participant Metrics as MetricsGroupV2
+    participant Prometheus
+
+    Client->>Router: HTTP Request (/v2/metrics/*)
+    Note over Router: (cmd/metrics-router.go:63-67)[https://google.com]
+    
+    Router->>Handler: metricsXXXHandler(c prometheus.Collector)
+    Note over Handler: cmd/metrics-v2.go:532-573
+    
+    Handler->>Collector: Collect(ch chan<- prometheus.Metric)
+    Note over Collector: cmd/metrics-v2.go:460-493
+    
+    Collector->>Metrics: populateAndPublish()
+    Note over Metrics: cmd/metrics-v2.go:719-770
+    
+    Metrics->>Prometheus: ReportMetrics()
+    Note over Prometheus: cmd/metrics-v2.go:412-477
+    
+    Prometheus-->>Client: HTTP Response
