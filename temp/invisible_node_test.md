@@ -21,9 +21,9 @@ graph TD
 	subgraph "bottom"
 	F[Prometheus]
 	end
-	class top transparentNode
-	class middle transparentNode
-	class bottom transparentNode
+	%%class top transparentNode
+	%%class middle transparentNode
+	%%class bottom transparentNode
 
 	A ---AB --> B
 	B ---BC--> C
