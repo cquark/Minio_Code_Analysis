@@ -4,17 +4,20 @@
 graph TD
 	classDef transparentNode fill:#fff, stroke-width:0px;
 	A[client]
+	subgraph "middle"
 	B[metricsRouter]
 	C[metricsXXXHandler]
 	D[metricsXXXCollector]
 	E[metricsGroupV2]
-	F[Prometheus]
 	AB["HTTP Request(/v2/metrics/*)"]:::transparentNode
 	BC["metricsXXXHandler(c Prometheus.Collector)"]:::transparentNode
 	CD["Collect(ch chan<-Prometheus.Metric)"]:::transparentNode
 	DE["populateAndPublish()"]:::transparentNode
 	EF["ReportMetrics()"]:::transparentNode
 	FA[HTTPResponse]:::transparentNode
+	end
+	F[Prometheus]
+	class middle transparentNode
 
 	A ---AB --> B
 	B ---BC--> C
