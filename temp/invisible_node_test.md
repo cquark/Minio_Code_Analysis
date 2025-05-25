@@ -3,7 +3,9 @@
 ```mermaid
 graph TD
 	classDef transparentNode fill:#fff, stroke-width:0px;
+	subgraph "top"
 	A[client]
+	end
 	subgraph "middle"
 	B[metricsRouter]
 	C[metricsXXXHandler]
@@ -16,8 +18,12 @@ graph TD
 	EF["ReportMetrics()"]:::transparentNode
 	FA[HTTPResponse]:::transparentNode
 	end
+	subgraph "bottom"
 	F[Prometheus]
+	end
+	class top transparentNode
 	class middle transparentNode
+	class bottom transparentNode
 
 	A ---AB --> B
 	B ---BC--> C
